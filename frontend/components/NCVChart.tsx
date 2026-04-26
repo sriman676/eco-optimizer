@@ -16,15 +16,13 @@ import {
 interface Props {
   history: number[];
   height?: number;
+  emptyClass?: string;
 }
 
-export default function NCVChart({ history, height = 250 }: Props) {
+export default function NCVChart({ history, height = 250, emptyClass = "min-h-[250px]" }: Props) {
   if (!history || history.length === 0) {
     return (
-      <div
-        className="flex items-center justify-center text-slate-500 text-sm"
-        style={{ height }}
-      >
+      <div className={`flex items-center justify-center text-slate-500 text-sm ${emptyClass}`}>
         No plan history yet
       </div>
     );

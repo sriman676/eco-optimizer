@@ -11,6 +11,14 @@ import ReportView from "@/components/ReportView";
 import { Leaf, LayoutDashboard, Sliders, FileText, RefreshCw, AlertCircle, BrainCircuit, Wand2 } from "lucide-react";
 import clsx from "clsx";
 
+/** Returns a Tailwind background class based on NCV score (0–100) */
+function ncvBarClass(ncv: number): string {
+  if (ncv <= 20) return "bg-green-500";
+  if (ncv <= 50) return "bg-yellow-500";
+  if (ncv <= 75) return "bg-orange-500";
+  return "bg-red-500";
+}
+
 export default function HomePage() {
   const {
     globalState,
@@ -158,12 +166,8 @@ export default function HomePage() {
                         <span className="text-sm text-slate-200 flex-1 truncate">{s.domain_name}</span>
                         <div className="w-24 h-1.5 bg-slate-700 rounded-full overflow-hidden">
                           <div
-                            className="h-full rounded-full"
-                            style={{
-                              width: `${s.domain_ncv}%`,
-                              backgroundColor:
-                                s.domain_ncv <= 20 ? "#22c55e" : s.domain_ncv <= 50 ? "#eab308" : s.domain_ncv <= 75 ? "#f97316" : "#ef4444",
-                            }}
+                            className={`h-full rounded-full ${ncvBarClass(s.domain_ncv)}`}
+                            style={{ width: `${s.domain_ncv}%` }}
                           />
                         </div>
                         <span className="text-sm text-slate-200 w-8 text-right">{s.domain_ncv.toFixed(0)}</span>
