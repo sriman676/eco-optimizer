@@ -67,7 +67,7 @@ export default function NCVChart({ history, height = 250 }: Props) {
             contentStyle={{ background: "#0f172a", border: "1px solid #334155", borderRadius: 8, fontSize: 12 }}
             labelStyle={{ color: "#94a3b8" }}
             itemStyle={{ color: "#22c55e" }}
-            formatter={(v: number) => [v.toFixed(2), "Risk Score"]}
+            formatter={(v) => [typeof v === "number" ? v.toFixed(2) : String(v ?? ""), "Risk Score"]}
             labelFormatter={(l) => `Step ${l}`}
           />
           <ReferenceLine y={0} stroke="#22c55e" strokeDasharray="4 4" opacity={0.4} />
