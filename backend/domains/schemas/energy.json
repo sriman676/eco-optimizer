@@ -1,0 +1,151 @@
+{
+  "id": "energy",
+  "name": "Clean Energy",
+  "sdg": [7, 9, 13],
+  "description": "Advances renewable energy adoption, grid reliability, and carbon reduction aligned with SDG 7, 9, and 13.",
+  "icon": "⚡",
+  "variables": [
+    {
+      "id": "renewable_share",
+      "name": "Renewable Energy Share",
+      "unit": "%",
+      "value": 35.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 60.0,
+      "max_safe": 100.0,
+      "weight": 0.92,
+      "higher_is_better": true,
+      "weather_sensitive": true
+    },
+    {
+      "id": "grid_reliability",
+      "name": "Grid Reliability Index",
+      "unit": "GRI",
+      "value": 55.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 70.0,
+      "max_safe": 100.0,
+      "weight": 0.85,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    },
+    {
+      "id": "energy_efficiency",
+      "name": "Energy Efficiency Index",
+      "unit": "EEI",
+      "value": 48.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 65.0,
+      "max_safe": 100.0,
+      "weight": 0.80,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    },
+    {
+      "id": "carbon_intensity",
+      "name": "Carbon Intensity",
+      "unit": "gCO2/kWh",
+      "value": 75.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 40.0,
+      "weight": 0.90,
+      "higher_is_better": false,
+      "weather_sensitive": false
+    },
+    {
+      "id": "energy_access",
+      "name": "Energy Access Rate",
+      "unit": "%",
+      "value": 62.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 80.0,
+      "max_safe": 100.0,
+      "weight": 0.78,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "energy_solar_installation",
+      "name": "Solar Farm Installation",
+      "description": "Deploy utility-scale photovoltaic solar arrays.",
+      "cost": 15000,
+      "effects": [
+        { "variable_id": "renewable_share", "delta": 18.0 },
+        { "variable_id": "carbon_intensity", "delta": -15.0 },
+        { "variable_id": "energy_access", "delta": 8.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.70
+    },
+    {
+      "id": "energy_wind_farm",
+      "name": "Wind Farm Expansion",
+      "description": "Construct onshore wind turbines in high-potential areas.",
+      "cost": 18000,
+      "effects": [
+        { "variable_id": "renewable_share", "delta": 20.0 },
+        { "variable_id": "carbon_intensity", "delta": -18.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.65
+    },
+    {
+      "id": "energy_smart_grid",
+      "name": "Smart Grid Upgrade",
+      "description": "Modernize distribution infrastructure with smart meters and automation.",
+      "cost": 12000,
+      "effects": [
+        { "variable_id": "grid_reliability", "delta": 22.0 },
+        { "variable_id": "energy_efficiency", "delta": 15.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.60
+    },
+    {
+      "id": "energy_storage",
+      "name": "Battery Storage Deployment",
+      "description": "Install grid-scale battery storage to balance intermittent renewables.",
+      "cost": 10000,
+      "effects": [
+        { "variable_id": "grid_reliability", "delta": 15.0 },
+        { "variable_id": "renewable_share", "delta": 8.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.68
+    },
+    {
+      "id": "energy_efficiency_program",
+      "name": "Building Energy Efficiency Program",
+      "description": "Retrofit public buildings with efficient HVAC and lighting.",
+      "cost": 6000,
+      "effects": [
+        { "variable_id": "energy_efficiency", "delta": 18.0 },
+        { "variable_id": "carbon_intensity", "delta": -10.0 }
+      ],
+      "max_applications": 4,
+      "diminishing_factor": 0.72
+    }
+  ],
+  "weather_modifiers": [
+    {
+      "variable_id": "renewable_share",
+      "weather_param": "wind_speed",
+      "coefficient": 0.10,
+      "baseline": 10.0
+    },
+    {
+      "variable_id": "renewable_share",
+      "weather_param": "temperature",
+      "coefficient": -0.04,
+      "baseline": 25.0
+    }
+  ]
+}

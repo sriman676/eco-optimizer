@@ -1,0 +1,150 @@
+{
+  "id": "smart_city",
+  "name": "Smart Cities",
+  "sdg": [11, 3],
+  "description": "Builds inclusive, resilient, and sustainable urban environments aligned with SDG 11 and SDG 3.",
+  "icon": "🏙️",
+  "variables": [
+    {
+      "id": "air_quality_index",
+      "name": "Air Quality Index",
+      "unit": "AQI",
+      "value": 65.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 50.0,
+      "weight": 0.92,
+      "higher_is_better": false,
+      "weather_sensitive": true
+    },
+    {
+      "id": "traffic_congestion",
+      "name": "Traffic Congestion Level",
+      "unit": "TCI",
+      "value": 72.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 45.0,
+      "weight": 0.78,
+      "higher_is_better": false,
+      "weather_sensitive": false
+    },
+    {
+      "id": "digital_connectivity",
+      "name": "Digital Connectivity Index",
+      "unit": "%",
+      "value": 55.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 75.0,
+      "max_safe": 100.0,
+      "weight": 0.72,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    },
+    {
+      "id": "public_transport_usage",
+      "name": "Public Transport Usage",
+      "unit": "%",
+      "value": 42.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 60.0,
+      "max_safe": 100.0,
+      "weight": 0.80,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    },
+    {
+      "id": "green_space_coverage",
+      "name": "Green Space Coverage",
+      "unit": "%",
+      "value": 32.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 50.0,
+      "max_safe": 100.0,
+      "weight": 0.75,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "city_ev_fleet",
+      "name": "Electric Vehicle Fleet Expansion",
+      "description": "Replace municipal vehicle fleet with EVs and deploy charging infrastructure.",
+      "cost": 13000,
+      "effects": [
+        { "variable_id": "air_quality_index", "delta": -20.0 },
+        { "variable_id": "traffic_congestion", "delta": -5.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.68
+    },
+    {
+      "id": "city_smart_traffic",
+      "name": "Smart Traffic Management System",
+      "description": "AI-powered adaptive traffic signals and congestion pricing.",
+      "cost": 10000,
+      "effects": [
+        { "variable_id": "traffic_congestion", "delta": -22.0 },
+        { "variable_id": "air_quality_index", "delta": -10.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.60
+    },
+    {
+      "id": "city_fiber_optic",
+      "name": "Fiber Optic Broadband Rollout",
+      "description": "Deploy high-speed fiber internet across underserved urban neighborhoods.",
+      "cost": 9000,
+      "effects": [
+        { "variable_id": "digital_connectivity", "delta": 22.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.65
+    },
+    {
+      "id": "city_public_transport",
+      "name": "Public Transport Upgrade",
+      "description": "Expand metro, BRT lines and subsidize fares for increased adoption.",
+      "cost": 15000,
+      "effects": [
+        { "variable_id": "public_transport_usage", "delta": 22.0 },
+        { "variable_id": "traffic_congestion", "delta": -15.0 },
+        { "variable_id": "air_quality_index", "delta": -12.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.65
+    },
+    {
+      "id": "city_urban_greening",
+      "name": "Urban Greening Initiative",
+      "description": "Create parks, green corridors, and rooftop gardens across the city.",
+      "cost": 5500,
+      "effects": [
+        { "variable_id": "green_space_coverage", "delta": 18.0 },
+        { "variable_id": "air_quality_index", "delta": -8.0 }
+      ],
+      "max_applications": 4,
+      "diminishing_factor": 0.75
+    }
+  ],
+  "weather_modifiers": [
+    {
+      "variable_id": "air_quality_index",
+      "weather_param": "wind_speed",
+      "coefficient": -0.08,
+      "baseline": 10.0
+    },
+    {
+      "variable_id": "air_quality_index",
+      "weather_param": "humidity",
+      "coefficient": 0.05,
+      "baseline": 60.0
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/srima/Desktop/AIESEC Hackathon/backend/core\" \"C:/Users/srima/Desktop/AIESEC Hackathon/backend/domains/schemas\" \"C:/Users/srima/Desktop/AIESEC Hackathon/backend/engine\" \"C:/Users/srima/Desktop/AIESEC Hackathon/backend/services\" \"C:/Users/srima/Desktop/AIESEC Hackathon/backend/models\" \"C:/Users/srima/Desktop/AIESEC Hackathon/backend/api\")",
+      "Bash(mkdir -p \"C:/Users/srima/Desktop/AIESEC Hackathon/frontend/app\" \"C:/Users/srima/Desktop/AIESEC Hackathon/frontend/components\" \"C:/Users/srima/Desktop/AIESEC Hackathon/frontend/store\" \"C:/Users/srima/Desktop/AIESEC Hackathon/frontend/lib\" \"C:/Users/srima/Desktop/AIESEC Hackathon/frontend/types\")",
+      "Bash(python -c ' *)",
+      "Bash(pip install *)",
+      "Bash(python -m uvicorn main:app --port 8000 --timeout-keep-alive 5)",
+      "Bash(curl -s http://localhost:8000/health)",
+      "Bash(curl -s http://localhost:8000/api/domains/state)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'[OK] Global NCV={d[\\\\\"global_ncv\\\\\"]:.2f}, Domains={len\\(d[\\\\\"domains\\\\\"]\\)}, Vars={d[\\\\\"total_variables\\\\\"]}'\\)\")",
+      "Bash(curl -s -X POST http://localhost:8000/api/optimize/ -H \"Content-Type: application/json\" -d '{\"domain_ids\":[\"water\"],\"budget\":30000,\"max_iterations\":50,\"target_ncv\":0}')",
+      "Bash(python -c \"import sys,json; r=json.load\\(sys.stdin\\); print\\(f'[OK] Optimize: {r[\\\\\"initial_ncv\\\\\"]:.2f} -> {r[\\\\\"final_ncv\\\\\"]:.2f}, actions={len\\(r[\\\\\"actions_taken\\\\\"]\\)}'\\)\" kill %1)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(node -e \"const p = require\\('./node_modules/next/package.json'\\); console.log\\(p.version\\)\")",
+      "Bash(node_modules/.bin/next --version)",
+      "Bash(npx next *)",
+      "Bash(where next *)",
+      "Bash(python -c \" import sys, json r = json.load\\(sys.stdin\\) print\\('status :', r['status']\\) print\\('partial_message:', r['partial_message']\\) print\\('ncv_reduction_pct:', r['ncv_reduction_pct']\\) print\\('total_improvement_score:', r['total_improvement_score']\\) print\\('cost_efficiency:', r['cost_efficiency']\\) print\\('ai_report_summary:', \\(r['ai_report_summary'] or ''\\)[:80], '...'\\) print\\('ai_insights count:', len\\(r['ai_insights'] or []\\)\\) first_action = r['actions_taken'][0] print\\('action[0].reason:', first_action['reason'][:80]\\) print\\('action[0].score :', first_action['score']\\) print\\('action[0].affected_domains:', first_action['affected_domains']\\) \" kill %1)",
+      "Bash(powershell *)"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 226, 232, 240;
+  --background-rgb: 2, 6, 23;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: radial-gradient(circle at 15% -10%, #0f172a 0%, #020617 45%, #020617 100%);
+  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+@layer components {
+  .readable-panel {
+    @apply bg-slate-800/95 border border-slate-600/70 rounded-xl;
+  }
+
+  .readable-title {
+    @apply text-base sm:text-lg font-semibold text-slate-100;
+  }
+
+  .readable-label {
+    @apply text-sm text-slate-300;
+  }
+
+  .readable-muted {
+    @apply text-sm text-slate-400;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}

@@ -1,0 +1,142 @@
+{
+  "id": "water",
+  "name": "Water Management",
+  "sdg": [6],
+  "description": "Ensures clean water availability, quality, and sustainable groundwater management aligned with SDG 6.",
+  "icon": "💧",
+  "variables": [
+    {
+      "id": "water_quality_index",
+      "name": "Water Quality Index",
+      "unit": "WQI",
+      "value": 52.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 70.0,
+      "max_safe": 100.0,
+      "weight": 0.90,
+      "higher_is_better": true,
+      "weather_sensitive": true
+    },
+    {
+      "id": "water_availability",
+      "name": "Water Availability",
+      "unit": "%",
+      "value": 58.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 65.0,
+      "max_safe": 100.0,
+      "weight": 0.85,
+      "higher_is_better": true,
+      "weather_sensitive": true
+    },
+    {
+      "id": "groundwater_level",
+      "name": "Groundwater Level",
+      "unit": "m",
+      "value": 38.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 45.0,
+      "max_safe": 100.0,
+      "weight": 0.80,
+      "higher_is_better": true,
+      "weather_sensitive": true
+    },
+    {
+      "id": "contamination_level",
+      "name": "Contamination Level",
+      "unit": "ppm",
+      "value": 72.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 40.0,
+      "weight": 0.95,
+      "higher_is_better": false,
+      "weather_sensitive": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "water_improve_filtration",
+      "name": "Advanced Filtration System",
+      "description": "Install multi-stage filtration to reduce contamination and improve water quality.",
+      "cost": 9000,
+      "effects": [
+        { "variable_id": "water_quality_index", "delta": 16.0 },
+        { "variable_id": "contamination_level", "delta": -18.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.65
+    },
+    {
+      "id": "water_rainwater_harvesting",
+      "name": "Rainwater Harvesting Network",
+      "description": "Deploy community-level rainwater collection and storage systems.",
+      "cost": 5500,
+      "effects": [
+        { "variable_id": "water_availability", "delta": 14.0 },
+        { "variable_id": "groundwater_level", "delta": 6.0 }
+      ],
+      "max_applications": 4,
+      "diminishing_factor": 0.70
+    },
+    {
+      "id": "water_leak_detection",
+      "name": "Smart Leak Detection & Repair",
+      "description": "Deploy IoT sensors to detect and repair distribution leaks.",
+      "cost": 3800,
+      "effects": [
+        { "variable_id": "water_availability", "delta": 9.0 },
+        { "variable_id": "water_quality_index", "delta": 5.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.55
+    },
+    {
+      "id": "water_conservation_campaign",
+      "name": "Community Conservation Campaign",
+      "description": "Public education and incentive programs to reduce water waste.",
+      "cost": 2200,
+      "effects": [
+        { "variable_id": "water_availability", "delta": 7.0 },
+        { "variable_id": "groundwater_level", "delta": 5.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.60
+    },
+    {
+      "id": "water_groundwater_recharge",
+      "name": "Groundwater Recharge Program",
+      "description": "Artificial recharge pits and managed aquifer replenishment.",
+      "cost": 7000,
+      "effects": [
+        { "variable_id": "groundwater_level", "delta": 20.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.75
+    }
+  ],
+  "weather_modifiers": [
+    {
+      "variable_id": "water_availability",
+      "weather_param": "precipitation",
+      "coefficient": 0.08,
+      "baseline": 50.0
+    },
+    {
+      "variable_id": "groundwater_level",
+      "weather_param": "precipitation",
+      "coefficient": 0.05,
+      "baseline": 50.0
+    },
+    {
+      "variable_id": "water_quality_index",
+      "weather_param": "humidity",
+      "coefficient": -0.03,
+      "baseline": 60.0
+    }
+  ]
+}

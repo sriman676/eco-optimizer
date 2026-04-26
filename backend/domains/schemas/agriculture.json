@@ -1,0 +1,152 @@
+{
+  "id": "agriculture",
+  "name": "Agriculture & Food Security",
+  "sdg": [2, 15],
+  "description": "Promotes sustainable farming, soil health, and food security aligned with SDG 2 and SDG 15.",
+  "icon": "🌾",
+  "variables": [
+    {
+      "id": "soil_health_index",
+      "name": "Soil Health Index",
+      "unit": "SHI",
+      "value": 48.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 60.0,
+      "max_safe": 100.0,
+      "weight": 0.88,
+      "higher_is_better": true,
+      "weather_sensitive": true
+    },
+    {
+      "id": "crop_yield_index",
+      "name": "Crop Yield Index",
+      "unit": "CYI",
+      "value": 55.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 65.0,
+      "max_safe": 100.0,
+      "weight": 0.85,
+      "higher_is_better": true,
+      "weather_sensitive": true
+    },
+    {
+      "id": "irrigation_efficiency",
+      "name": "Irrigation Efficiency",
+      "unit": "%",
+      "value": 50.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 70.0,
+      "max_safe": 100.0,
+      "weight": 0.80,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    },
+    {
+      "id": "pesticide_level",
+      "name": "Pesticide Level",
+      "unit": "mg/kg",
+      "value": 68.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 35.0,
+      "weight": 0.82,
+      "higher_is_better": false,
+      "weather_sensitive": false
+    },
+    {
+      "id": "biodiversity_score",
+      "name": "Biodiversity Score",
+      "unit": "BDI",
+      "value": 42.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 55.0,
+      "max_safe": 100.0,
+      "weight": 0.75,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "agri_smart_irrigation",
+      "name": "Smart Drip Irrigation",
+      "description": "Install precision drip irrigation using soil moisture sensors.",
+      "cost": 7500,
+      "effects": [
+        { "variable_id": "irrigation_efficiency", "delta": 22.0 },
+        { "variable_id": "crop_yield_index", "delta": 10.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.68
+    },
+    {
+      "id": "agri_organic_transition",
+      "name": "Organic Farming Transition",
+      "description": "Phase out synthetic pesticides with organic alternatives.",
+      "cost": 6000,
+      "effects": [
+        { "variable_id": "pesticide_level", "delta": -22.0 },
+        { "variable_id": "soil_health_index", "delta": 12.0 },
+        { "variable_id": "biodiversity_score", "delta": 8.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.65
+    },
+    {
+      "id": "agri_cover_cropping",
+      "name": "Cover Cropping Program",
+      "description": "Plant off-season cover crops to restore soil nutrients.",
+      "cost": 3500,
+      "effects": [
+        { "variable_id": "soil_health_index", "delta": 15.0 },
+        { "variable_id": "biodiversity_score", "delta": 10.0 }
+      ],
+      "max_applications": 4,
+      "diminishing_factor": 0.72
+    },
+    {
+      "id": "agri_precision_agriculture",
+      "name": "Precision Agriculture Platform",
+      "description": "Deploy satellite-guided variable-rate fertilizer and seed application.",
+      "cost": 12000,
+      "effects": [
+        { "variable_id": "crop_yield_index", "delta": 18.0 },
+        { "variable_id": "pesticide_level", "delta": -12.0 },
+        { "variable_id": "soil_health_index", "delta": 8.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.60
+    },
+    {
+      "id": "agri_agroforestry",
+      "name": "Agroforestry Integration",
+      "description": "Integrate trees with crops to improve microclimate and biodiversity.",
+      "cost": 5000,
+      "effects": [
+        { "variable_id": "biodiversity_score", "delta": 18.0 },
+        { "variable_id": "soil_health_index", "delta": 10.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.75
+    }
+  ],
+  "weather_modifiers": [
+    {
+      "variable_id": "soil_health_index",
+      "weather_param": "precipitation",
+      "coefficient": 0.04,
+      "baseline": 50.0
+    },
+    {
+      "variable_id": "crop_yield_index",
+      "weather_param": "temperature",
+      "coefficient": -0.05,
+      "baseline": 22.0
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "id": "waste",
+  "name": "Waste Management",
+  "sdg": [12, 14],
+  "description": "Promotes circular economy, recycling, and safe waste disposal aligned with SDG 12 and SDG 14.",
+  "icon": "♻️",
+  "variables": [
+    {
+      "id": "recycling_rate",
+      "name": "Recycling Rate",
+      "unit": "%",
+      "value": 38.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 55.0,
+      "max_safe": 100.0,
+      "weight": 0.85,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    },
+    {
+      "id": "landfill_usage",
+      "name": "Landfill Usage",
+      "unit": "%",
+      "value": 78.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 50.0,
+      "weight": 0.88,
+      "higher_is_better": false,
+      "weather_sensitive": false
+    },
+    {
+      "id": "pollution_index",
+      "name": "Environmental Pollution Index",
+      "unit": "EPI",
+      "value": 70.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 35.0,
+      "weight": 0.90,
+      "higher_is_better": false,
+      "weather_sensitive": true
+    },
+    {
+      "id": "waste_processing_capacity",
+      "name": "Waste Processing Capacity",
+      "unit": "%",
+      "value": 52.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 70.0,
+      "max_safe": 100.0,
+      "weight": 0.78,
+      "higher_is_better": true,
+      "weather_sensitive": false
+    },
+    {
+      "id": "hazardous_waste_level",
+      "name": "Hazardous Waste Level",
+      "unit": "t/yr",
+      "value": 65.0,
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "min_safe": 0.0,
+      "max_safe": 25.0,
+      "weight": 0.92,
+      "higher_is_better": false,
+      "weather_sensitive": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "waste_recycling_infra",
+      "name": "Recycling Infrastructure Expansion",
+      "description": "Build sorting facilities and collection networks for recyclable materials.",
+      "cost": 8500,
+      "effects": [
+        { "variable_id": "recycling_rate", "delta": 20.0 },
+        { "variable_id": "landfill_usage", "delta": -15.0 },
+        { "variable_id": "waste_processing_capacity", "delta": 12.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.68
+    },
+    {
+      "id": "waste_composting",
+      "name": "Community Composting Program",
+      "description": "Establish organic waste composting at neighborhood scale.",
+      "cost": 3500,
+      "effects": [
+        { "variable_id": "landfill_usage", "delta": -12.0 },
+        { "variable_id": "pollution_index", "delta": -10.0 }
+      ],
+      "max_applications": 4,
+      "diminishing_factor": 0.72
+    },
+    {
+      "id": "waste_to_energy",
+      "name": "Waste-to-Energy Plant",
+      "description": "Convert non-recyclable waste to energy, reducing landfill dependency.",
+      "cost": 14000,
+      "effects": [
+        { "variable_id": "landfill_usage", "delta": -22.0 },
+        { "variable_id": "waste_processing_capacity", "delta": 18.0 },
+        { "variable_id": "pollution_index", "delta": -8.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.60
+    },
+    {
+      "id": "waste_hazardous_treatment",
+      "name": "Hazardous Waste Treatment Facility",
+      "description": "Build certified facilities for safe processing of hazardous materials.",
+      "cost": 16000,
+      "effects": [
+        { "variable_id": "hazardous_waste_level", "delta": -30.0 },
+        { "variable_id": "pollution_index", "delta": -15.0 }
+      ],
+      "max_applications": 2,
+      "diminishing_factor": 0.65
+    },
+    {
+      "id": "waste_circular_economy",
+      "name": "Circular Economy Program",
+      "description": "Industry partnerships to redesign products for reuse and recycling.",
+      "cost": 6000,
+      "effects": [
+        { "variable_id": "recycling_rate", "delta": 14.0 },
+        { "variable_id": "hazardous_waste_level", "delta": -12.0 },
+        { "variable_id": "landfill_usage", "delta": -10.0 }
+      ],
+      "max_applications": 3,
+      "diminishing_factor": 0.70
+    }
+  ],
+  "weather_modifiers": [
+    {
+      "variable_id": "pollution_index",
+      "weather_param": "wind_speed",
+      "coefficient": -0.06,
+      "baseline": 10.0
+    }
+  ]
+}
